@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai_code_review
+    username: postgres
+    password: Abhi@123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+server:
+  port: 8080
+
+jwt:
+  secret: 5WJ9fN3sL2xQ8vH7kP4mR1zT6yB9cD2eF8gH3jK7nL5pQ2rS9tV6xY1zA4bC8dE
+  expiration: 86400000
+
+file:
+  upload-dir: uploads/
+  temp-dir: temp/
+  report-dir: reports/
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
