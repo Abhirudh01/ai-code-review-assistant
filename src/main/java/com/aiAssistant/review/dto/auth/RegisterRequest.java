@@ -1,4 +1,4 @@
-package com.aiAssistant.review.dto;
+package com.aiAssistant.review.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

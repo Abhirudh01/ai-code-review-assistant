@@ -1,4 +1,4 @@
-package com.aiAssistant.review.dto;
+package com.aiAssistant.review.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
