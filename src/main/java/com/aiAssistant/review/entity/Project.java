@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
@@ -35,11 +37,9 @@ public class Project {
     @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
     private Review review;
 
-//    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<CodeFile> codeFiles;
+    @OneToMany(mappedBy = "project",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<CodeFile> codeFiles=new ArrayList<>();
 
-    @PrePersist
-    public void prePersist() {
-        this.uploadedAt = LocalDateTime.now();
-    }
 }

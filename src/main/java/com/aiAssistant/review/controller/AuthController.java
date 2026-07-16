@@ -4,11 +4,8 @@ import com.aiAssistant.review.dto.auth.AuthenticationResponse;
 import com.aiAssistant.review.dto.auth.LoginRequest;
 import com.aiAssistant.review.dto.auth.RegisterRequest;
 import com.aiAssistant.review.service.AuthService;
-import com.sun.net.httpserver.HttpsServer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +23,8 @@ public class AuthController {
     public ResponseEntity<AuthenticationResponse> register(
             @Valid @RequestBody RegisterRequest request
             ){
+        System.out.println(">>>> Register API called <<<<");
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(authService.register(request));
