@@ -4,7 +4,9 @@ import com.aiAssistant.review.entity.CodeFile;
 import com.aiAssistant.review.service.StaticAnalysisService;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.StaticJavaParser;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StaticAnalysisServiceImpl implements StaticAnalysisService {
     @Override
     public void validateJavaSyntax(CodeFile codeFile) {

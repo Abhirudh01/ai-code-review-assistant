@@ -1,10 +1,7 @@
 package com.aiAssistant.review.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Review {
 
     @Id
@@ -22,8 +20,21 @@ public class Review {
 
     private Integer overallScore;
 
+    @Lob
     @Column(columnDefinition = "TEXT")
     private String aiSummary;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String checkstyleReport;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String pmdReport;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String spotbugsReport;
 
     private LocalDateTime createdAt;
 
@@ -33,6 +44,6 @@ public class Review {
 
     @PrePersist
     public void prePersist() {
-        this.createdAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 }
