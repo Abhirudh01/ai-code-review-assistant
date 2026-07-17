@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="code_files")
+@Table(name = "code_files")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CodeFile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,11 +24,18 @@ public class CodeFile {
     private ProgrammingLanguage language;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String sourceCode;
 
-    @ManyToOne(fetch =FetchType.LAZY)
-    @JoinColumn(name="project_id",nullable=false)
-    private Project project;
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean syntaxValid = true;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String syntaxErrors;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 }

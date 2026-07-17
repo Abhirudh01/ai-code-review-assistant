@@ -9,6 +9,7 @@ import com.aiAssistant.review.entity.User;
 import com.aiAssistant.review.repository.ProjectRepository;
 import com.aiAssistant.review.repository.UserRepository;
 import com.aiAssistant.review.service.ProjectService;
+import com.aiAssistant.review.service.ZipExtractionService;
 import com.aiAssistant.review.validation.CodeValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
+    private final ZipExtractionService zipExtractionService;
 
     private User getCurrentUser(){
         Authentication authentication=
@@ -37,6 +39,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
     @Override
     public UploadResponse uploadProject(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new RuntimeException("ZIP file is empty.");
+        }
+
+        String fileName = file.getOriginalFilename();
+
+        if (fileName == null || !fileName.toLowerCase().endsWith(".zip")) {
+            throw new RuntimeException("Only ZIP files are allowed.");
+        }
         User user=getCurrentUser();
         Project project= Project.builder()
                 .name(file.getOriginalFilename())
@@ -45,6 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
                 .user(user)
                 .build();
         projectRepository.save(project);
+        zipExtractionService.extractAndSaveFiles(file, project);
         return UploadResponse.builder()
                 .projectId(project.getId())
                 .projectName(project.getName())
