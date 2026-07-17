@@ -23,15 +23,15 @@ public class CodeFile {
     @Column(nullable = false)
     private ProgrammingLanguage language;
 
-    @Lob
+
     @Column(nullable = false, columnDefinition = "TEXT")
     private String sourceCode;
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean syntaxValid = true;
+    private boolean syntaxValid = false;
 
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String syntaxErrors;
 

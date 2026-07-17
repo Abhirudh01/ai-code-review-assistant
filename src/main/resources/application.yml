@@ -22,7 +22,7 @@ server:
 
 jwt:
   secret: 5WJ9fN3sL2xQ8vH7kP4mR1zT6yB9cD2eF8gH3jK7nL5pQ2rS9tV6xY1zA4bC8dE
-  expiration: 86400000
+  expiration: 604800000
 
 file:
   upload-dir: uploads/

@@ -37,6 +37,7 @@ public class Project {
     @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
     private Review review;
 
+    @Builder.Default
     @OneToMany(mappedBy = "project",
             cascade = CascadeType.ALL,
             orphanRemoval = true)

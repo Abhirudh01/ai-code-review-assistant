@@ -20,19 +20,17 @@ public class Review {
 
     private Integer overallScore;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String aiSummary;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String checkstyleReport;
 
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String pmdReport;
 
-    @Lob
+
     @Column(columnDefinition = "TEXT")
     private String spotbugsReport;
 
